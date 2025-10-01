@@ -130,21 +130,6 @@ export default function Home() {
                         </div>
                     )}
 
-                    {/* Loading State */}
-                    {currentData.loading && !currentData.error && (
-                        <div className="flex justify-center items-center py-12">
-                            <div className="text-center">
-                                <LoadingSpinner size="lg" className="mx-auto mb-4" />
-                                <p className="text-gray-400">
-                                    Loading all data from subgraph...
-                                </p>
-                                <p className="text-sm text-gray-500 mt-2">
-                                    This may take a moment as we load all records
-                                </p>
-                            </div>
-                        </div>
-                    )}
-
                     {/* Dashboard Charts - Always visible */}
                     <DashboardCharts
                         claimsData={allTotalsData.allTotals?.claimTotals && allTotalsData.allTotals.claimTotals !== null ? {
