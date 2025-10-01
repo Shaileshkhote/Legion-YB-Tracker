@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom dark theme styles */
+:root {
+    --dark-50: #000000;
+    --dark-100: #111111;
+    --dark-200: #1a1a1a;
+    --dark-300: #222222;
+    --dark-400: #2a2a2a;
+    --dark-500: #333333;
+    --dark-600: #404040;
+    --dark-700: #4a4a4a;
+    --dark-800: #555555;
+    --dark-900: #666666;
+}
+
+/* Force dark theme */
+html {
+    color-scheme: dark;
+    background: linear-gradient(135deg, #000000 0%, #666666 50%, #000000 100%);
+    min-height: 100vh;
+}
+
+body {
+    background: linear-gradient(135deg, #000000 0%, #666666 50%, #000000 100%);
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+
+@layer base {
+    html {
+        font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+        @apply text-white;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 shadow-lg hover:shadow-teal-500/25;
+    }
+
+    .btn-secondary {
+        @apply bg-dark-200 hover:bg-dark-300 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    }
+
+    .card {
+        @apply bg-dark-100/40 rounded-2xl shadow-lg border border-dark-200 backdrop-blur-sm;
+    }
+
+    .input {
+        @apply w-full px-4 py-3 border border-dark-300 rounded-xl bg-dark-200 text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-dark-200;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-teal-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-teal-600;
+}
+
+/* Dark mode toggle animation */
+.dark-mode-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

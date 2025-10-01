@@ -1,0 +1,95 @@
+type TokenClaim @entity(immutable: true) {
+  id: ID!
+  investor: Bytes!
+  amount: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  timestamp: BigInt!
+  gasPrice: BigInt!
+}
+
+type Refund @entity(immutable: true) {
+  id: ID!
+  investor: Bytes!
+  amount: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  timestamp: BigInt!
+  gasPrice: BigInt!
+}
+
+type Investment @entity(immutable: true) {
+  id: ID!
+  investor: Bytes!
+  amount: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+  timestamp: BigInt!
+  gasPrice: BigInt!
+}
+
+type SaleStatus @entity(immutable: false) {
+  id: ID!
+  totalCapitalInvested: BigInt!
+  totalCapitalRaised: BigInt!
+  totalCapitalWithdrawn: BigInt!
+  totalTokensAllocated: BigInt!
+  claimTokensMerkleRoot: Bytes
+  isCanceled: Boolean!
+  capitalWithdrawn: Boolean!
+  hasEnded: Boolean!
+  endTime: BigInt
+  refundEndTime: BigInt
+  lockupEndTime: BigInt
+  vestingStartTime: BigInt
+  askToken: Bytes
+  lastUpdated: BigInt!
+}
+
+type InvestorSummary @entity(immutable: false) {
+  id: ID!
+  address: Bytes!
+  totalClaimed: BigInt!
+  totalRefunded: BigInt!
+  totalInvested: BigInt!
+  claimCount: BigInt!
+  refundCount: BigInt!
+  investmentCount: BigInt!
+  lastClaimed: BigInt
+  lastRefunded: BigInt
+  lastInvested: BigInt
+  firstActivity: BigInt!
+  lastActivity: BigInt!
+}
+
+type RefundTotals @entity(immutable: false) {
+  id: ID! # "refund-totals"
+  totalRefunded: BigInt!
+  totalRefundCount: BigInt!
+  uniqueRefundAddresses: BigInt!
+  lastUpdated: BigInt!
+}
+
+type InvestmentTotals @entity(immutable: false) {
+  id: ID! # "investment-totals"
+  totalInvested: BigInt!
+  totalInvestmentCount: BigInt!
+  uniqueInvestorAddresses: BigInt!
+  lastUpdated: BigInt!
+}
+
+type ClaimTotals @entity(immutable: false) {
+  id: ID! # "claim-totals"
+  totalClaimed: BigInt!
+  totalClaimCount: BigInt!
+  uniqueClaimerAddresses: BigInt!
+  lastUpdated: BigInt!
+}
+
+type UserCounters @entity(immutable: false) {
+  id: ID! # "user-counters"
+  totalInvestmentUsers: BigInt!
+  totalRefundUsers: BigInt!
+  totalClaimUsers: BigInt!
+  lastUpdated: BigInt!
+}

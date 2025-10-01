@@ -1,0 +1,42 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LegionPreLiquidSaleV2
+    network: mainnet
+    source:
+      address: "0x28be6260dbb7872de5effc9a4a73c85b7405a8c0"
+      abi: LegionPreLiquidSaleV2
+      startBlock: 23468846  # Approximate block when contract was deployed
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TokenClaim
+        - Refund
+        - Investment
+        - SaleStatus
+        - InvestorSummary
+        - RefundTotals
+        - InvestmentTotals
+        - ClaimTotals
+        - UserCounters
+      abis:
+        - name: LegionPreLiquidSaleV2
+          file: ./abis/LegionPreLiquidSaleV2.json
+      eventHandlers:
+        - event: TokenAllocationClaimed(uint256,address)
+          handler: handleTokenAllocationClaimed
+        - event: CapitalRefunded(uint256,address)
+          handler: handleCapitalRefunded
+        - event: CapitalInvested(uint256,address,uint256)
+          handler: handleCapitalInvested
+        - event: SaleEnded(uint256)
+          handler: handleSaleEnded
+        - event: CapitalRaisedPublished(uint256)
+          handler: handleCapitalRaisedPublished
+        - event: SaleResultsPublished(bytes32,uint256,address,uint256)
+          handler: handleSaleResultsPublished
+      file: ./src/mapping.ts
