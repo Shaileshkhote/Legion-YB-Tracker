@@ -104,19 +104,19 @@ export function RefundsTable({ summaries, loading }: RefundsTableProps) {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent"></div>
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-xl"></div>
             <div className="relative z-10">
-                <div className="p-6 border-b border-dark-300">
+                <div className="p-4 sm:p-6 border-b border-dark-300">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <h2 className="text-xl font-semibold text-white">
+                        <h2 className="text-lg sm:text-xl font-semibold text-white">
                             Refunds by Address
                         </h2>
-                        <div className="relative">
+                        <div className="relative w-full sm:w-auto">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                             <input
                                 type="text"
                                 placeholder="Search addresses..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10 pr-4 py-2 border border-dark-400 rounded-lg bg-dark-300 text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                className="w-full pl-10 pr-4 py-2 border border-dark-400 rounded-lg bg-dark-300 text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm sm:text-base"
                             />
                         </div>
                     </div>

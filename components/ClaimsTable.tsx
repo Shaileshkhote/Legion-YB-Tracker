@@ -90,19 +90,19 @@ export function ClaimsTable({ summaries, loading }: ClaimsTableProps) {
             <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-transparent"></div>
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-teal-400/20 to-transparent rounded-full blur-xl"></div>
             <div className="relative z-10">
-                <div className="p-6 border-b border-dark-300">
+                <div className="p-4 sm:p-6 border-b border-dark-300">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <h2 className="text-xl font-semibold text-white">
+                        <h2 className="text-lg sm:text-xl font-semibold text-white">
                             Token Claims by Address
                         </h2>
-                        <div className="relative">
+                        <div className="relative w-full sm:w-auto">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                             <input
                                 type="text"
                                 placeholder="Search addresses..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10 pr-4 py-2 border border-dark-400 rounded-lg bg-dark-400 text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                className="w-full pl-10 pr-4 py-2 border border-dark-400 rounded-lg bg-dark-400 text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm sm:text-base"
                             />
                         </div>
                     </div>
@@ -113,7 +113,7 @@ export function ClaimsTable({ summaries, loading }: ClaimsTableProps) {
                         <thead className="bg-dark-300/30 backdrop-blur-sm">
                             <tr>
                                 <th
-                                    className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
+                                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
                                     onClick={() => handleSort('totalClaimed')}
                                 >
                                     <div className="flex items-center gap-1">
@@ -122,16 +122,17 @@ export function ClaimsTable({ summaries, loading }: ClaimsTableProps) {
                                     </div>
                                 </th>
                                 <th
-                                    className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
+                                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
                                     onClick={() => handleSort('totalClaimed')}
                                 >
                                     <div className="flex items-center gap-1">
-                                        Total Claimed
+                                        <span className="hidden sm:inline">Total Claimed</span>
+                                        <span className="sm:hidden">Total</span>
                                         <SortIcon field="totalClaimed" />
                                     </div>
                                 </th>
                                 <th
-                                    className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
+                                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
                                     onClick={() => handleSort('claimCount')}
                                 >
                                     <div className="flex items-center gap-1">
@@ -140,15 +141,16 @@ export function ClaimsTable({ summaries, loading }: ClaimsTableProps) {
                                     </div>
                                 </th>
                                 <th
-                                    className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
+                                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-dark-400"
                                     onClick={() => handleSort('lastClaimed')}
                                 >
                                     <div className="flex items-center gap-1">
-                                        Last Claimed
+                                        <span className="hidden sm:inline">Last Claimed</span>
+                                        <span className="sm:hidden">Last</span>
                                         <SortIcon field="lastClaimed" />
                                     </div>
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>
@@ -156,35 +158,38 @@ export function ClaimsTable({ summaries, loading }: ClaimsTableProps) {
                         <tbody className="bg-dark-200/30 backdrop-blur-sm divide-y divide-dark-300/20">
                             {filteredAndSortedSummaries.map((summary, index) => (
                                 <tr key={summary.address} className="hover:bg-dark-300/30">
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                                         <div className="flex items-center">
-                                            <div className="text-sm font-medium text-white">
+                                            <div className="text-xs sm:text-sm font-medium text-white">
                                                 {formatAddress(summary.address)}
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-white">
-                                            {formatNumber(weiToEther(summary.totalClaimed), 4)} YieldBasis
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                                        <div className="text-xs sm:text-sm text-white">
+                                            <span className="hidden sm:inline">{formatNumber(weiToEther(summary.totalClaimed), 4)} YieldBasis</span>
+                                            <span className="sm:hidden">{formatNumber(weiToEther(summary.totalClaimed), 2)} YB</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 bg-primary-900/20 text-primary-300">
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                                        <span className="inline-flex items-center px-2 py-1 sm:px-2.5 sm:py-0.5 rounded-full text-xs font-medium bg-primary-900/20 text-primary-300">
                                             {summary.claimCount}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                                        {summary.lastClaimed > 0 ? formatDate(summary.lastClaimed) : 'N/A'}
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-400">
+                                        <span className="hidden sm:inline">{summary.lastClaimed > 0 ? formatDate(summary.lastClaimed) : 'N/A'}</span>
+                                        <span className="sm:hidden">{summary.lastClaimed > 0 ? new Date(summary.lastClaimed * 1000).toLocaleDateString() : 'N/A'}</span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                                         <a
                                             href={`https://etherscan.io/address/${summary.address}#internaltx`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center px-3 py-1.5 text-xs font-medium text-teal-400 bg-teal-500/10 border border-teal-500/20 rounded-lg hover:bg-teal-500/20 hover:text-teal-300 transition-colors duration-200"
+                                            className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 text-xs font-medium text-teal-400 bg-teal-500/10 border border-teal-500/20 rounded-lg hover:bg-teal-500/20 hover:text-teal-300 transition-colors duration-200"
                                         >
                                             <ExternalLink className="w-3 h-3 mr-1" />
-                                            View on Etherscan
+                                            <span className="hidden sm:inline">View on Etherscan</span>
+                                            <span className="sm:hidden">View</span>
                                         </a>
                                     </td>
                                 </tr>
